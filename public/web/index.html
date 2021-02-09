@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .chartContainer1 {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" />
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <title>StatTracker</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="jumbotron">
+            <h1>StatTracker</h1>
+            <p class="lead">This is an example of VueJS used for a website</p>
+            <hr class="my-4" />
+            <p class="lead">
+                showing stats of players
+                <a class="btn btn-primary" href="#">Learn more</a>
+            </p>
+        </div>
+        <div class="p-3">
+            <input type="text" v-model="userHandle" placeholder="Enter username" />
+            <select v-model="platform" class="form-select" id="platform" name="platform">
+                <option value="psn">Playstation Network</option>
+                <option value="xbl">Xbox Live</option>
+                <option value="battlenet">PC/BattleNet</option>
+            </select>
+            <span> Platform is {{platform}}</span>
+            <button class="btn btn-primary" v-on:click="find()">Find</button>
+            <div class="border border-light shadow rounded-lg p-3">
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <!-- <p>Username - {{ info.platformUserHandle }}</p> -->
+                            <user-name name="Andrew"></user-name>
+                            <user-name :name="info.platformUserHandle"></user-name>
+                            <ul>
+                                <li>Slug - {{ info.platformSlug }}</li>
+                                <li>Time Played - {{ info.timePlayed }}</li>
+                                <li>Wins - {{ info.wins }}</li>
+                                <li>Win/Loss Percentage - <span class="badge badge-primary">{{ info.wlPercentage }}% WL</span></li>
+                            </ul>
+                            <div>{{ info }}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <piechart1></piechart1>
+                        </td>
+                        <td>
+                            <image1></image1>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+    <div class="chartContainer1">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById("myChart").getContext("2d");
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: "pie",
+
+            // The data for our dataset
+            data: {
+                labels: ["Bronze", "Silver", "Gold"],
+                datasets: [
+                    {
+                        label: "mooky456",
+                        backgroundColor: "rgb(0, 0, 255)",
+                        borderColor: "rgb(255, 255, 255)",
+                        data: [2, 8, 24],
+                    },
+                ],
+            },
+
+            // Configuration options go here
+            options: {},
+        });
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

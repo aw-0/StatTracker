@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stat Tracker</title>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="userHandle" placeholder="Enter username" />
+        <input type="text" v-model="platform" placeholder="Enter platform" />
+        <button v-on:click="find()">Find</button>
+
+        <p>Username - {{ info.platformUserHandle }}</p>
+    
+        <ul>
+            <li>Slug - {{ info.platformSlug }}</li>
+            <li>Time Played - {{ info.timePlayed }}</li>
+            <li>Wins - {{ info.wins }}</li>
+            <li>Win/Loss Percentage - {{ info.wlPercentage }}</li>
+        </ul>
+
+        <div>{{ info }}</div>
+        <br>
+        <br>
+        <div v-for="currency in info">
+            <span class="bg-primary">{{ currency.description }}</span>
+            <span class="bg-secondary">{{ currency.rate_float }}</span>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
