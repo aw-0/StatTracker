@@ -1,7 +1,7 @@
 const express = require('express')
 const https = require('https')
 var app = express()
-const port = 80
+const port = 3000
 const options = {
     hostname: 'public-api.tracker.gg',
     port: 443,
@@ -45,7 +45,11 @@ app.get('/stat1', (req, res) => {
             playerStats.timePlayed = json.data.segments[0].stats.timePlayed.displayValue;
             playerStats.wins = json.data.segments[0].stats.wins.value;
             playerStats.wlPercentage = json.data.segments[0].stats.wlPercentage.value
+            playerStats.chartData = [json.data.segments[0].stats.goldMedals.value, 
+            json.data.segments[0].stats.silverMedals.value, 
+            json.data.segments[0].stats.bronzeMedals.value];;
             options.path = "/v2/overwatch/standard/profile"
+            console.log(playerStats)
             res.send(playerStats);
         });
     }
